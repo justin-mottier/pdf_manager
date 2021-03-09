@@ -1,0 +1,23 @@
+{
+  "header": {
+    "base_id": 2,
+    "path": "var/pdf_files"
+  },
+  "files": {
+    "0": {
+      "id": 0,
+      "name": "Lorem ipsum",
+      "filename": "lorem-ipsum.pdf"
+    },
+    "1": {
+    "id": 1,
+    "name": "PDF test",
+    "filename": "pdf-test.pdf"
+    },
+    "2": {
+    "id": 2,
+    "name": "test",
+    "filename": "test.pdf"
+    }
+  }
+}
