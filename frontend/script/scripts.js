@@ -4,13 +4,22 @@ import ApiWrapper from '../src/ApiWrapper.js'
 class ViewController {
 
     pdfFilesList
+    #apiWrapper
 
     constructor() {
-        let a = new ApiWrapper()
+        this.#apiWrapper = new ApiWrapper()
         this.pdfFilesList = a.getAllPdfFiles()
         if (this.pdfFilesList !== null) {
             this.hideSpinner()
             this.displayContent()
+        }
+        document.addEventListener('change', this.fileUploadedCallback)
+    }
+
+    fileUploadedCallback(_event) {
+        let fileList = document.getElementById("upload-input").files
+        for (let file of fileList) {
+            this.#apiWrapper.uploadPdfFile(file)
         }
     }
 
@@ -52,3 +61,4 @@ class ViewController {
 }
 
 let controller = new ViewController()
+

@@ -36,4 +36,8 @@ export default class ApiWrapper {
     getPdfFileById(id) {
         this.#requestAndResponse(id)
     }
+
+    uploadPdfFile(file) {
+
+    }
 }

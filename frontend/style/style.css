@@ -1,0 +1,7 @@
+#upload-container:hover #upload-button::before {
+    right: 0;
+}
+
+#upload-container {
+    cursor: pointer;
+}
