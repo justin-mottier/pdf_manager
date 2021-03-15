@@ -14,7 +14,7 @@ class ListPdfFileAction extends PdfFileAction
     {
         $pdf_files = $this->pdf_file_repository->getAll();
 
-        $this->logger->info("Users list was viewed.");
+        $this->logger->info("Pdf list was viewed.");
 
         return $this->respondWithData($pdf_files);
     }

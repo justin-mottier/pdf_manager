@@ -5,6 +5,7 @@ use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
 use App\Application\Actions\PdfFile\ListPdfFileAction;
 use App\Application\Actions\PdfFile\ViewPdfFileAction;
+use App\Application\Actions\PdfFile\AddPdfFileAction;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
@@ -24,6 +25,7 @@ return function (App $app) {
     $app->group('/pdf-file', function (Group $group) {
        $group->get('/all', ListPdfFileAction::class);
        $group->get('/{id}', ViewPdfFileAction::class);
+       $group->post('/', AddPdfFileAction::class);
     });
 
     $app->group('/users', function (Group $group) {
