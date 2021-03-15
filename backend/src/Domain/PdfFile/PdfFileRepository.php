@@ -16,4 +16,8 @@ interface PdfFileRepository
      * @throws PdfFileNotFoundException
      */
     public function getPdfFileFromId(int $id): PdfFile;
+
+    public function addPdfFile(string $name, string $filename): bool;
+
+    public function updatePdfFile(int $id, string $name, string $filename): bool;
 }

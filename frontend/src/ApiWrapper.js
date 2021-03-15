@@ -18,9 +18,9 @@ export default class ApiWrapper {
         return this.#baseUrl.toString() + '/' + route
     }
 
-    #requestAndResponse(route) {
-        this.#httpClient.open("GET", this.#buildUrl(route), false)
-        this.#httpClient.send();
+    #requestAndResponse(route, params=null, method="GET") {
+        this.#httpClient.open(method, this.#buildUrl(route), false)
+        this.#httpClient.send(params);
 
         if (this.#httpClient.status !== 200) {
             return null
@@ -37,7 +37,10 @@ export default class ApiWrapper {
         this.#requestAndResponse(id)
     }
 
-    uploadPdfFile(file) {
-
+    uploadPdfFile(name, file) {
+        let formData = new FormData()
+        formData.append('name', name)
+        formData.append('file', file)
+        console.log(this.#requestAndResponse('add', JSON.stringify(file), "POST"))
     }
 }

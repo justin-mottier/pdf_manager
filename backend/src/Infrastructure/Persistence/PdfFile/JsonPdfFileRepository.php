@@ -73,4 +73,9 @@ class JsonPdfFileRepository implements PdfFileRepository
         ];
         return $this->writeJson();
     }
+
+    public function updatePdfFile(int $id, string $name, string $filename): bool
+    {
+        return true;
+    }
 }

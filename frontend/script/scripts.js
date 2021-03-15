@@ -8,18 +8,20 @@ class ViewController {
 
     constructor() {
         this.#apiWrapper = new ApiWrapper()
-        this.pdfFilesList = a.getAllPdfFiles()
+        this.pdfFilesList = this.#apiWrapper.getAllPdfFiles()
         if (this.pdfFilesList !== null) {
             this.hideSpinner()
             this.displayContent()
         }
-        document.addEventListener('change', this.fileUploadedCallback)
+        document.addEventListener('change', (event) => {
+            this.fileUploadedCallback(event)
+        })
     }
 
     fileUploadedCallback(_event) {
         let fileList = document.getElementById("upload-input").files
         for (let file of fileList) {
-            this.#apiWrapper.uploadPdfFile(file)
+            this.#apiWrapper.uploadPdfFile('coucou', file)
         }
     }
 

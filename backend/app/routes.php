@@ -25,7 +25,7 @@ return function (App $app) {
     $app->group('/pdf-file', function (Group $group) {
        $group->get('/all', ListPdfFileAction::class);
        $group->get('/{id}', ViewPdfFileAction::class);
-       $group->post('/', AddPdfFileAction::class);
+       $group->post('/add', AddPdfFileAction::class);
     });
 
     $app->group('/users', function (Group $group) {
