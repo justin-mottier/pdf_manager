@@ -20,13 +20,18 @@
 </div>
 <div id="spinner" uk-spinner="ratio: 8" class="uk-position-center"></div>
 <div class="uk-padding-large">
-    <div id="fileGallery" class="uk-grid uk-child-width-expand@s uk-text-center uk-grid-medium"></div>
+    <div id="fileGallery" class="uk-grid uk-text-center uk-grid-medium uk-child-width-1-3"></div>
 </div>
-<div class="uk-position-bottom uk-background-secondary uk-light uk-padding-large uk-width-1-1">
-    <div id="upload-container" class="uk-placeholder uk-text-center uk-position-large uk-position-cover uk-flex uk-flex-center uk-flex-middle" uk-form-custom>
+<div class="uk-grid uk-background-secondary uk-light uk-padding">
+    <div id="upload-container" class="uk-placeholder uk-text-center uk-width-expand uk-margin-left" uk-form-custom>
         <input id="upload-input" type="file" multiple>
-        <button id="upload-button" class="uk-button uk-button-text uk-margin-auto" type="button">Click here to upload a new file</button>
+        <button id="upload-button" class="uk-button uk-button-text uk-margin-auto uk-text-middle uk-height-1-1" type="button">Click here to upload a new file</button>
+    </div>
+    <div class="uk-width-1-3 uk-margin-right">
+        <input id="upload-name" class="uk-input uk-margin-bottom" type="text">
+        <button id="upload-action" class="uk-button uk-button-default uk-width-1-1">Upload</button>
     </div>
 </div>
+<div class="uk-position-bottom" id="bottom-div"></div>
 </body>
 </html>

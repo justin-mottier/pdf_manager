@@ -40,7 +40,7 @@ export default class ApiWrapper {
     uploadPdfFile(name, file) {
         let formData = new FormData()
         formData.append('name', name)
-        formData.append('file', file)
-        console.log(this.#requestAndResponse('add', JSON.stringify(file), "POST"))
+        formData.append(encodeURIComponent(name), file)
+        console.log(this.#requestAndResponse('add', formData, "POST"))
     }
 }

@@ -13,20 +13,30 @@ class ViewController {
             this.hideSpinner()
             this.displayContent()
         }
-        document.addEventListener('change', (event) => {
+
+        document.getElementById('upload-input').addEventListener('change', (event) => {
+            document.getElementById('upload-button').innerText = document.getElementById("upload-input").files[0].name
+        })
+        document.getElementById('upload-action').addEventListener('click', (event) => {
             this.fileUploadedCallback(event)
         })
+
     }
 
     fileUploadedCallback(_event) {
         let fileList = document.getElementById("upload-input").files
+        let name = document.getElementById('upload-name').value
         for (let file of fileList) {
-            this.#apiWrapper.uploadPdfFile('coucou', file)
+            this.#apiWrapper.uploadPdfFile(name, file)
         }
+
+        this.pdfFilesList = this.#apiWrapper.getAllPdfFiles()
+        this.displayContent()
     }
 
     displayContent() {
         let fileGallery = document.getElementById('fileGallery')
+        fileGallery.textContent = "";
 
         for (let file of this.pdfFilesList) {
             console.log(file)
@@ -63,4 +73,3 @@ class ViewController {
 }
 
 let controller = new ViewController()
-
