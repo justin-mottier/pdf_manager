@@ -54,13 +54,15 @@ class JsonPdfFileRepository implements PdfFileRepository
     /**
      * {@inheritdoc}
      */
-    public function getPdfFileFromId(int $id): PdfFile
+    public function getPdfFileFromId(int $id): ?array
     {
-        if (!isset($this->pdf_files[$id])) {
-            throw new PdfFileNotFoundException();
+        foreach ($this->pdf_files as $file) {
+            if ($file['id'] == $id) {
+                return $file;
+            }
         }
 
-        return $this->pdf_files[$id];
+        return null;
     }
 
     public function addPdfFile(string $name, string $filename): bool
@@ -76,6 +78,26 @@ class JsonPdfFileRepository implements PdfFileRepository
 
     public function updatePdfFile(int $id, string $name, string $filename): bool
     {
+        return true;
+    }
+
+    public function editPdfFileName(int $id, string $new_name): bool
+    {
+        if (!key_exists($id, $this->pdf_files)) {
+            return false;
+        }
+        $this->pdf_files[$id]['name'] = $new_name;
+        $this->writeJson();
+        return true;
+    }
+
+    public function rmPdfFile(int $id): bool
+    {
+        if (!key_exists($id, $this->pdf_files)) {
+            return false;
+        }
+        unset($this->pdf_files[$id]);
+        $this->writeJson();
         return true;
     }
 }

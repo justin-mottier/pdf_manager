@@ -1,16 +1,14 @@
 export default class ApiWrapper {
-    static #DOMAIN = "http://localhost"
-    static #PORT = "8080"
     static #ROUTE_PREFIX = "pdf-file"
 
     #httpClient
     #baseUrl
 
-    constructor() {
+    constructor(domain, port) {
         this.#httpClient = new XMLHttpRequest();
-        this.#baseUrl = new URL(ApiWrapper.#ROUTE_PREFIX, ApiWrapper.#DOMAIN)
+        this.#baseUrl = new URL(ApiWrapper.#ROUTE_PREFIX, domain)
         console.log(this.#baseUrl.toString())
-        this.#baseUrl.port = ApiWrapper.#PORT
+        this.#baseUrl.port = port
         console.log(this.#baseUrl.toString())
     }
 
@@ -26,21 +24,29 @@ export default class ApiWrapper {
             return null
         }
 
-        return JSON.parse(this.#httpClient.responseText)['data']
+        return JSON.parse(this.#httpClient.responseText)
     }
 
     getAllPdfFiles() {
-        return this.#requestAndResponse('all')
+        return this.#requestAndResponse('all')['data']
     }
 
     getPdfFileById(id) {
-        this.#requestAndResponse(id)
+        return this.#requestAndResponse(id)
     }
 
     uploadPdfFile(name, file) {
         let formData = new FormData()
         formData.append('name', name)
         formData.append(encodeURIComponent(name), file)
-        console.log(this.#requestAndResponse('add', formData, "POST"))
+        return this.#requestAndResponse('add', formData, "POST")
+    }
+
+    editPdfFile(id, name) {
+        return this.#requestAndResponse(id + '/' + name, null, "PUT")
+    }
+
+    rmPdfFile(id) {
+        return this.#requestAndResponse(id, null, "DELETE")
     }
 }

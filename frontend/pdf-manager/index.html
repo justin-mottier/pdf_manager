@@ -13,25 +13,36 @@
 
     <script src="../script/scripts.js" type="module"></script>
 </head>
-<body class="uk-background-muted uk-height-viewport">
+<body class="uk-background-muted uk-height-1-1">
 <div class="uk-background-secondary uk-light">
     <h1 class="uk-text-center uk-text-middle uk-margin-remove-bottom uk-padding-small">PDF Manager</h1>
     <hr class="uk-margin-remove-top uk-background-primary"/>
 </div>
-<div id="spinner" uk-spinner="ratio: 8" class="uk-position-center"></div>
-<div class="uk-padding-large">
-    <div id="fileGallery" class="uk-grid uk-text-center uk-grid-medium uk-child-width-1-3"></div>
+<div id="edit-modal" data-id="-1" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <input id="new-name" class="uk-input uk-margin-bottom" type="text">
+        <button id="confirm-new-name" class="uk-modal-close uk-button" type="button">confirm</button>
+        <button class="uk-modal-close uk-button" type="button">cancel</button>
+    </div>
 </div>
-<div class="uk-grid uk-background-secondary uk-light uk-padding">
+<div class="uk-container">
+    <div id="spinner" uk-spinner="ratio: 8" class="uk-position-center"></div>
+    <div hidden id="no-file">
+        <h2 class="uk-tile uk-text-center uk-text-middle uk-position-center">No files uploaded yet</h2>
+    </div>
+    <div id="fileGallery" class="uk-grid uk-text-center uk-grid-medium uk-child-width-1-4"></div>
+</div>
+
+<footer class="uk-grid uk-background-secondary uk-light uk-padding uk-position-bottom uk-position-fixed" uk-sticky>
     <div id="upload-container" class="uk-placeholder uk-text-center uk-width-expand uk-margin-left" uk-form-custom>
-        <input id="upload-input" type="file" multiple>
+        <input id="upload-input" type="file">
         <button id="upload-button" class="uk-button uk-button-text uk-margin-auto uk-text-middle uk-height-1-1" type="button">Click here to upload a new file</button>
     </div>
     <div class="uk-width-1-3 uk-margin-right">
         <input id="upload-name" class="uk-input uk-margin-bottom" type="text">
         <button id="upload-action" class="uk-button uk-button-default uk-width-1-1">Upload</button>
     </div>
-</div>
+</footer>
 <div class="uk-position-bottom" id="bottom-div"></div>
 </body>
 </html>

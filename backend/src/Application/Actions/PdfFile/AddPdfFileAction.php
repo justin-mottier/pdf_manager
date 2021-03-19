@@ -27,7 +27,7 @@ class AddPdfFileAction extends PdfFileAction
         }
 
         $name = urldecode($encoded_name);
-        $filename = $file_obj['name'];
+        $filename = uniqid() . '.pdf';
         $tmp_location = $file_obj['tmp_name'];
 
         $this->logger->info("name: $name  -  filename: $filename  -  tmp: $tmp_location");
